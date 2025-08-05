@@ -27640,7 +27640,7 @@ class RELEASE{
       const commit = await exec('git', ['rev-list', '--tags', '--skip=1', '--max-count=1']);
       if(commit){
         const tag = await exec('git ', ['describe', '--abbrev=0', commit]);
-        const commits = await exec('git', ['log', `${commit}..HEAD`, '--oneline'], false);
+        const commits = await exec('git', ['log', `${tag}..HEAD`, '--oneline', '--no-merges'], false);
         if(commits){
           const aMatches = [...commits.matchAll(/(\S{7}) ([^:]+): (.+)/igm)];
           if(aMatches && aMatches.length > 0){
